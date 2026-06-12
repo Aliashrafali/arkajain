@@ -13,7 +13,7 @@ const Menu = () =>{
                                 <ul>
                                     <li><NavLink to={'/'} className={'nav'}>Dashboard</NavLink></li>
                                     <li><NavLink to={'/Create'} className={'nav'}>Create</NavLink></li>
-                                    <li><NavLink to={'/'} className={'nav'}>View Records</NavLink></li>
+                                    <li><NavLink to={'/View'} className={'nav'}>View Records</NavLink></li>
                                     <li><NavLink to={'/'} className={'nav'}>Logout</NavLink></li>
                                 </ul>
                             </nav>
