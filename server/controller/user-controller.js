@@ -9,4 +9,13 @@ const getUser = async (req,res) =>{
     }
 }
 
-module.exports = {getUser}
+const deleteData = async (req,res) =>{
+    try {
+        await User.deleteOne({_id:req.body.id});
+        res.status(201).json("Data Deleted");
+    } catch (error) {
+        console.log("Error while Delete data", error);
+    }
+}
+
+module.exports = {getUser, deleteData}

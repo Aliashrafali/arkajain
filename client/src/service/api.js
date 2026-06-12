@@ -16,3 +16,11 @@ export const getUser = async () =>{
         console.log("Error While get data from API", error);
     }
 }
+
+export const deleteData = async (data) =>{
+    try {
+        return await axios.post(`${URL}/delete`, data);
+    } catch (error) {
+        console.log("Error while delete API", error);
+    }
+}

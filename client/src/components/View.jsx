@@ -1,8 +1,9 @@
 import React from "react";
 import Menu from "./Menu";
-import { getUser } from "../service/api.js";
+import { getUser, deleteData } from "../service/api.js";
 import { useState } from "react";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const View = () =>{
 
@@ -15,6 +16,19 @@ const View = () =>{
     const getUsersData = async () =>{
         const res = await getUser(); // API 
         setUsers(res.data);  // set res data in users variable 
+    }
+
+    const deleteUser = async (e) =>{
+        try {
+            const res = await deleteData({id:e});
+            if(res.status === 201){
+                alert("Deleted");
+            }else{
+                alert("SOmething Went wrong");
+            }
+        } catch (error) {
+            console.log("Error while delete data", error);
+        }
     }
 
     return(
@@ -54,7 +68,15 @@ const View = () =>{
                                                             </td>
                                                             <td>
                                                                 <span className="badge rounded-pill text-bg-primary">Edit</span>
-                                                                <span className="badge rounded-pill text-bg-danger" style={{marginLeft:'5px'}}>Delete</span>
+                                                                <NavLink
+                                                                    onClick={() =>{
+                                                                        if(window.confirm("Are you sure want to delete this item")){
+                                                                            deleteUser(`${item._id}`);
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    <span className="badge rounded-pill text-bg-danger" style={{marginLeft:'5px'}}>Delete</span>
+                                                                </NavLink>
                                                             </td>
                                                         </tr>
                                                     )

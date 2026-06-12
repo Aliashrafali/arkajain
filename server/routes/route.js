@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../schema/user-schema.js');
-const {getUser} = require('../controller/user-controller.js');
+const {getUser, deleteData} = require('../controller/user-controller.js');
 const multer = require('multer');
 
 const router = express.Router();
@@ -34,5 +34,6 @@ router.post('/add', upload.single('image'), async (req, res) => {
 });
 
 router.get('/all', getUser);
+router.post('/delete', deleteData);
 
 module.exports = router;
