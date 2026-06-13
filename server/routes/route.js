@@ -1,6 +1,6 @@
 const express = require('express');
 const User = require('../schema/user-schema.js');
-const {getUser, deleteData} = require('../controller/user-controller.js');
+const {getUser, deleteData, getUsersEditData, updateData} = require('../controller/user-controller.js');
 const multer = require('multer');
 
 const router = express.Router();
@@ -35,5 +35,7 @@ router.post('/add', upload.single('image'), async (req, res) => {
 
 router.get('/all', getUser);
 router.post('/delete', deleteData);
+router.post('/detedit', getUsersEditData);
+router.post('/editData', updateData);
 
 module.exports = router;

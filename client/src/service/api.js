@@ -24,3 +24,19 @@ export const deleteData = async (data) =>{
         console.log("Error while delete API", error);
     }
 }
+
+export const getEditData = async (data) =>{
+    try {
+        return await axios.post(`${URL}/detedit`, data);
+    } catch (error) {
+        console.log("Error while delete API", error);
+    }
+}
+
+export const updateApi = async (data) =>{
+    try {
+        return await axios.post(`${URL}/editData`, data);
+    } catch (error) {
+        console.log("Error while delete API", error);
+    }
+}

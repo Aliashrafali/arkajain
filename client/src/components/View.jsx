@@ -5,25 +5,25 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const View = () =>{
+const View = () => {
 
     const [users, setUsers] = useState([]); // bulk 
 
-    useEffect(() =>{  // add side effects when you will get data from database, or call api
+    useEffect(() => {  // add side effects when you will get data from database, or call api
         getUsersData(); // it is function
     });
 
-    const getUsersData = async () =>{
+    const getUsersData = async () => {
         const res = await getUser(); // API 
         setUsers(res.data);  // set res data in users variable 
     }
 
-    const deleteUser = async (e) =>{
+    const deleteUser = async (e) => {
         try {
-            const res = await deleteData({id:e});
-            if(res.status === 201){
+            const res = await deleteData({ id: e });
+            if (res.status === 201) {
                 alert("Deleted");
-            }else{
+            } else {
                 alert("SOmething Went wrong");
             }
         } catch (error) {
@@ -31,7 +31,7 @@ const View = () =>{
         }
     }
 
-    return(
+    return (
         <>
             <Menu />
             <section>
@@ -56,10 +56,10 @@ const View = () =>{
                                         </thead>
                                         <tbody>
                                             {
-                                                users.map((item,key) =>{
-                                                    return(
+                                                users.map((item, key) => {
+                                                    return (
                                                         <tr>
-                                                            <td>{key+=1}</td>
+                                                            <td>{key += 1}</td>
                                                             <td>{item.name}</td>
                                                             <td>{item.mobile}</td>
                                                             <td>{item.email}</td>
@@ -67,15 +67,15 @@ const View = () =>{
                                                                 <img src={`http://localhost:8000/uploads/${item.image}`} alt={item.image} height={'40px'} width={'40px'} className="img-thumbnail"></img>
                                                             </td>
                                                             <td>
-                                                                <span className="badge rounded-pill text-bg-primary">Edit</span>
+                                                                <NavLink to={`/EditData/${item._id}`}><span className="badge rounded-pill text-bg-primary">Edit</span></NavLink>
                                                                 <NavLink
-                                                                    onClick={() =>{
-                                                                        if(window.confirm("Are you sure want to delete this item")){
+                                                                    onClick={() => {
+                                                                        if (window.confirm("Are you sure want to delete this item")) {
                                                                             deleteUser(`${item._id}`);
                                                                         }
                                                                     }}
                                                                 >
-                                                                    <span className="badge rounded-pill text-bg-danger" style={{marginLeft:'5px'}}>Delete</span>
+                                                                    <span className="badge rounded-pill text-bg-danger" style={{ marginLeft: '5px' }}>Delete</span>
                                                                 </NavLink>
                                                             </td>
                                                         </tr>
